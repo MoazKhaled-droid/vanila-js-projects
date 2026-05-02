@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="E-quiz — Answer questions in the Computers category. Test your knowledge of CPU, RAM, networking, and more." />
+  <title>E-quiz | Computers — Quiz</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/quiz.css" />
+</head>
+
+<body class="quiz-page">
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav class="navbar" id="quiz-nav" role="navigation" aria-label="Quiz navigation">
+    <div class="navbar__inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="navbar__logo" aria-label="E-quiz home">
+        <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+        <span class="navbar__logo-text">E-<span>quiz</span></span>
+      </a>
+
+      <!-- Right Controls -->
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle light/dark mode" title="Toggle theme">
+          <div class="theme-toggle__track" aria-hidden="true">🌙</div>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       MAIN QUIZ AREA
+  ============================================================ -->
+  <main class="quiz-main" id="quiz-main">
+    <div class="quiz-container">
+
+      <!-- --------------------------------------------------------
+           QUIZ CARD
+      -------------------------------------------------------- -->
+      <div class="quiz-card" id="quiz-card" role="main" aria-label="Quiz question">
+
+        <!-- === QUIZ HEADER === -->
+        <header class="quiz-header">
+
+          <!-- Top row: category chip + timer -->
+          <div class="quiz-header__top">
+            <div class="quiz-meta">
+              <span class="quiz-category-chip" id="quiz-category-chip">
+              </span>
+              <span class="badge badge-cyan" id="quiz-difficulty-badge"></span>
+            </div>
+
+            <!-- Timer display -->
+            <div class="quiz-timer" id="quiz-timer" aria-live="polite" aria-atomic="true" title="Time remaining">
+              <span class="quiz-timer__dot" aria-hidden="true"></span>
+              <span id="timer-display"></span>
+            </div>
+          </div>
+
+          <!-- Progress section -->
+          <div class="progress-section" id="progress-section">
+            <div class="progress-info">
+              <span class="progress-label">Progress</span>
+              <span class="progress-fraction">
+                Question <span id="current-q-num"></span> of <span id="total-q-num"></span>
+              </span>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="progress-bar-track" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+              aria-label="Quiz progress">
+              <div class="progress-bar-fill" id="progress-bar" style="width: 0%"></div>
+            </div>
+
+            <!-- Step dots -->
+            <div class="progress-dots" aria-hidden="true" id="progress-dots">
+
+            </div>
+          </div>
+
+        </header>
+
+        <!-- === QUIZ BODY === -->
+        <div class="quiz-body" id="quiz-body">
+
+          <!-- Question Number label -->
+          <div class="question-number" aria-hidden="true">
+            <span class="question-number__badge" id="numBadge"></span>
+            Question
+          </div>
+
+          <!-- Question Text -->
+          <h2 class="question-text" id="question-text">
+
+          </h2>
+
+          <!-- Answer Grid — 4 options -->
+          <div class="answers-grid" id="answers-grid" role="group" aria-labelledby="question-text">
+
+            <!-- Option A — CORRECT (demo state) -->
+            <button class="answer-btn" id="answer-a"
+              aria-label="Option A: Central Processing Unit — Correct answer" data-value="a">
+              <span class="answer-btn__letter" aria-hidden="true">A</span>
+              <span class="answer-btn__text"></span>
+            </button>
+
+            <!-- Option B — INCORRECT (demo state) -->
+            <button class="answer-btn" id="answer-b"
+              aria-label="Option B: Computer Personal Unit — Incorrect answer selected" data-value="b">
+              <span class="answer-btn__letter" aria-hidden="true">B</span>
+              <span class="answer-btn__text"></span>
+            </button>
+
+            <!-- Option C — default -->
+            <button class="answer-btn" id="answer-c" aria-label="Option C: Core Processor Utility" data-value="c">
+              <span class="answer-btn__letter" aria-hidden="true">C</span>
+              <span class="answer-btn__text"></span>
+            </button>
+
+            <!-- Option D — default -->
+            <button class="answer-btn" id="answer-d" aria-label="Option D: Central Power Unit" data-value="d">
+              <span class="answer-btn__letter" aria-hidden="true">D</span>
+              <span class="answer-btn__text"></span>
+            </button>
+
+          </div><!-- /answers-grid -->
+        </div><!-- /quiz-body -->
+
+
+        <!-- === QUIZ FOOTER === -->
+        <footer class="quiz-footer" id="quiz-footer">
+          <button class="btn btn-primary" id="next-btn" role="button" aria-label="Go to next question" disabled>
+            Next Question →
+          </button>
+        </footer>
+
+      </div><!-- /quiz-card -->
+    </div><!-- /quiz-container -->
+  </main>
+<script src="../js/quiz/quiz.js" type="module"></script>
+</body>
+
+</html>

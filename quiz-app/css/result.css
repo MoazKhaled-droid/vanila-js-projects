@@ -1,0 +1,409 @@
+/* ================================================================
+   E-QUIZ | result.css
+   Result Page — Score Card, Stats, CTA
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   1. Result Page Layout
+   ---------------------------------------------------------------- */
+.result-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.result-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem);
+  margin-top: 70px;
+}
+
+.result-container {
+  width: 100%;
+  max-width: 560px;
+}
+
+/* ----------------------------------------------------------------
+   2. Celebration Badge
+   ---------------------------------------------------------------- */
+.result-celebration {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.result-emoji {
+  font-size: 4.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  animation: float 3s ease-in-out infinite;
+  line-height: 1;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+.result-celebration__title {
+  font-size: clamp(1.6rem, 4vw, 2.25rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-primary-lt), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+
+.result-celebration__subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* Confetti-like floating dots */
+.confetti-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.confetti-ring::before,
+.confetti-ring::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: conic-gradient(
+    rgba(124, 58, 237, 0) 0deg,
+    rgba(124, 58, 237, 0.35) 90deg,
+    rgba(6, 182, 212, 0.3) 180deg,
+    rgba(16, 185, 129, 0.25) 270deg,
+    rgba(124, 58, 237, 0) 360deg
+  );
+  animation: spin-ring 6s linear infinite;
+  filter: blur(6px);
+}
+
+.confetti-ring::after {
+  animation-direction: reverse;
+  animation-duration: 8s;
+}
+
+@keyframes spin-ring {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ----------------------------------------------------------------
+   3. Score Card
+   ---------------------------------------------------------------- */
+.score-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  box-shadow: var(--shadow-lg), 0 0 80px var(--accent-glow);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+/* Score Display */
+.score-display {
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  position: relative;
+  background: radial-gradient(ellipse at center top, rgba(124, 58, 237, 0.10) 0%, transparent 65%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.score-ring {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SVG ring is in HTML; this styles the container */
+.score-ring__svg {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.score-ring__track {
+  fill: none;
+  stroke: var(--progress-track);
+  stroke-width: 8;
+}
+
+.score-ring__fill {
+  fill: none;
+  stroke: url(#scoreGradient);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 408; /* circumference: 2π×65 ≈ 408.4 */
+  stroke-dashoffset: 82; /* 408 * (1 - 0.8) = 81.6 (80% = 8/10) */
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.score-ring__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score-ring__number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.score-ring__number em {
+  font-style: normal;
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.score-ring__label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.score-percentage {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.3rem 1rem;
+  border-radius: var(--radius-full);
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  color: var(--accent-primary-lt);
+  display: inline-block;
+}
+
+/* ----------------------------------------------------------------
+   4. Stats Grid
+   ---------------------------------------------------------------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border-color);
+}
+
+.stat-item {
+  padding: 1.25rem 1rem;
+  text-align: center;
+  position: relative;
+  transition: background var(--transition-fast);
+}
+
+.stat-item:not(:last-child) {
+  border-right: 1px solid var(--border-color);
+}
+
+.stat-item:hover {
+  background: var(--bg-glass);
+}
+
+.stat-item__value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-item__value--correct  { color: var(--correct); }
+.stat-item__value--incorrect{ color: var(--incorrect); }
+.stat-item__value--time     { color: var(--accent-secondary); }
+
+.stat-item__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ----------------------------------------------------------------
+   5. Performance Message
+   ---------------------------------------------------------------- */
+.performance-bar {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-glass);
+}
+
+.performance-bar__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.performance-bar__title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.performance-bar__pct {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--correct);
+}
+
+.perf-track {
+  height: 5px;
+  border-radius: var(--radius-full);
+  background: var(--progress-track);
+  overflow: hidden;
+}
+
+.perf-fill {
+  height: 100%;
+  width: 80%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--correct), var(--accent-secondary));
+  position: relative;
+}
+
+.perf-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 16px; height: 100%;
+  background: rgba(255,255,255,0.4);
+  filter: blur(3px);
+  border-radius: inherit;
+}
+
+/* ----------------------------------------------------------------
+   6. Message Card
+   ---------------------------------------------------------------- */
+.message-card {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.message-card__icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* .message-card__body {} */
+
+.message-card__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.message-card__text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ----------------------------------------------------------------
+   7. Action Buttons
+   ---------------------------------------------------------------- */
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.result-actions .btn {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+}
+
+.result-actions .btn-secondary-outline {
+  background: var(--bg-glass);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-secondary);
+  backdrop-filter: var(--backdrop-blur);
+}
+
+.result-actions .btn-secondary-outline:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary-lt);
+  transform: translateY(-2px);
+}
+
+/* ----------------------------------------------------------------
+   8. Footer credit
+   ---------------------------------------------------------------- */
+.result-footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ----------------------------------------------------------------
+   9. Responsive — Result
+   ---------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .score-display {
+    padding: 2rem 1.25rem 1.5rem;
+  }
+
+  .stat-item__value {
+    font-size: 1.2rem;
+  }
+
+  .performance-bar {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .score-ring {
+    width: 140px;
+    height: 140px;
+  }
+
+  .score-ring__number {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 481px) {
+  .result-actions {
+    flex-direction: row;
+  }
+
+  .result-actions .btn {
+    flex: 1;
+  }
+}

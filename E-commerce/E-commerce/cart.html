@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Vault</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/cart.css">
+</head>
+
+<body>
+    <header class="navbar container">
+        <a href="index.html" class="logo">Vaul<span>t</span></a>
+        <div class="nav-actions">
+            <button class="icon-btn" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+            <div class="notification-container" id="notificationBtn">
+                <button class="icon-btn">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notification-badge" id="notificationBadge" style="display: none;">0</span>
+                </button>
+                <div class="notification-dropdown" id="notificationDropdown">
+                    <div class="notification-content" id="notificationContent">No active orders.</div>
+                </div>
+            </div>
+            <a href="cart.html" class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a href="login.html" class="icon-btn"><i class="fa-solid fa-user"></i></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="cart-container">
+            <h1 class="cart-header">Your Cart</h1>
+            <div class="cart-items" id="cartItemsList"></div>
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                <div class="summary-row"><span>Subtotal</span><span id="subtotalValue">$0</span></div>
+                <div class="summary-row"><span>Total</span><span id="totalValue">$0</span></div>
+                <button class="btn checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Payment Details</h2>
+                <button class="modal-close" id="closeModalBtn"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group" style="margin-bottom: 15px;">
+                    <label for="ccName" style="display: block; margin-bottom: 5px; font-weight: 500;">Cardholder
+                        Name</label>
+                    <input type="text" class="input-field" id="ccName" placeholder="e.g. John Doe">
+                    <p class="field-error" id="errName"
+                        style="color:red; font-size:0.8rem; display:none; margin-top:5px;"></p>
+                </div>
+                <div class="input-group" style="margin-bottom: 15px;">
+                    <label for="ccNumber" style="display: block; margin-bottom: 5px; font-weight: 500;">Card
+                        Number</label>
+                    <input type="text" class="input-field" id="ccNumber" placeholder="16 digits" maxlength="16">
+                    <p class="field-error" id="errNumber"
+                        style="color:red; font-size:0.8rem; display:none; margin-top:5px;"></p>
+                </div>
+                <div class="form-row" style="display:flex; gap:10px; margin-bottom: 15px;">
+                    <div class="input-group" style="flex: 1;">
+                        <label for="ccExpiry" style="display: block; margin-bottom: 5px; font-weight: 500;">Expiry
+                            Date</label>
+                        <input type="text" class="input-field" id="ccExpiry" placeholder="MM/YY" maxlength="5">
+                        <p class="field-error" id="errExpiry"
+                            style="color:red; font-size:0.8rem; display:none; margin-top:5px;"></p>
+                    </div>
+                    <div class="input-group" style="flex: 1;">
+                        <label for="ccCvv" style="display: block; margin-bottom: 5px; font-weight: 500;">CVV</label>
+                        <input type="text" class="input-field" id="ccCvv" placeholder="123" maxlength="3">
+                        <p class="field-error" id="errCvv"
+                            style="color:red; font-size:0.8rem; display:none; margin-top:5px;"></p>
+                    </div>
+                </div>
+                <p class="payment-error" id="paymentError"
+                    style="color:red; display:none; text-align: center; margin-top: 10px;"></p>
+                <button class="btn checkout-btn" id="confirmPaymentBtn" style="width:100%; margin-top:10px;">Confirm
+                    Payment</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col about">
+                <h2 class="logo">Vault<span>.</span></h2>
+                <p>Your premium destination for the latest tech and beauty products. We provide high-quality items with
+                    lightning-fast delivery.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">All Products</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact">
+                <h3>Contact Us</h3>
+                <p><i class="fa-solid fa-location-dot"></i> Tanta, Gharbia, Egypt</p>
+                <p><i class="fa-solid fa-phone"></i> +20 123 456 789</p>
+                <p><i class="fa-solid fa-envelope"></i> support@vault.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Vault. All rights reserved. Made with <i class="fa-solid fa-heart"
+                    style="color: var(--accent-color);"></i> by <span>Moaz khaled</span></p>
+        </div>
+    </footer>
+
+
+    <!-- Payment Modal -->
+
+    <script src="js/pages/cart.js" type="module"></script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="temp-card glass-effect">
+        <span>9:00</span>
+        <span><i class="fa-solid fa-sun icon-01d"></i></span>
+        <span>9c</span>
+    </div>
+
+
+
+    <div class="forecast">
+        <span><i class="fa-solid fa-sun icon-01d"></i></span>
+        <div class="info">
+            <span>friday,april 21</span>
+            <span>heavy rain</span>
+        </div>
+        <div class="deg">
+            <span>9</span>
+            <span>16</span>
+        </div>
+    </div>
+    <!-- <script>
+
+export function renderWhether(object) {
+    let [current, forecast, dayForcast] = object;
+    current.foreach(({ weather: [{ description, icon }], main: { temp: currentTempreture }, wind: { speed: windSpeed } }) => {
+        let date = new Date();
+        document.body.style.backgroundImage = `url(../assets/imges/${icon})`
+        let currentDate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()} | ${date.getHours() > 12
+            ? `${date.getHours() - 12} PM`
+            : `${date.getHours()} AM`
+            }`;
+        dateField.textContent = currentDate;
+        weatherCase.textContent = description || "Unknown case";
+        currentTemp.textContent = currentTempreture || "Unknown Tempreture";
+        windSpeed.textContent = `Wind speed ${windSpeed || "Unknown"}`
+    })
+    let dayForcastsCards = dayForcast.map(({ weather: [{ description, icon }], main: { temp: currentTempreture }, wind: { speed: windSpeed }, dt_txt: time }) => {
+        let date = new Date(time);
+        return `
+        <div class="forecast">
+            <span>${weatherIcons[icon]}</span>
+            <div class="info">
+                <span>${date.getDay()},${months[date.getMonth()]} ${date.getDate()}</span>
+                <span>${description}</span>
+            </div>
+            <div class="deg">
+                <span>${currentTempreture}</span>
+            </div>
+        </div>
+        `
+    }).join("");
+    dayForcast.innerHtml = dayForcastsCards;
+
+    let hoursForcastsCards = forecast.map(({ weather: [{ description, icon }], main: { temp: currentTempreture }, wind: { speed: windSpeed }, dt_txt: time }) => {
+        let date = new Date(time);
+        let date = new Date(time)
+        let hour = date.getHours > 12 ? `${date.getHours - 12} PM` : `${date.getHours} AM`
+        return `
+                <div class="temp-card glass-effect">
+                    <span>${hour}</span>
+                    <span>${weatherIcons[icon]}</span>
+                    <span>${currentTempreture}C</span>
+                </div>
+        `
+    }).join("");
+    tempDetails.innerHtml = hoursForcastsCards;
+
+
+}
+    </script> -->
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="E-quiz — Test your knowledge across Computers, General Knowledge and more. Pick a category, set your difficulty, and challenge yourself." />
+  <title>E-quiz | Choose Your Category</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/home.css" />
+</head>
+
+<body class="home-page">
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav class="navbar" id="main-nav" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="navbar__logo" aria-label="E-quiz home">
+        <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+        <span class="navbar__logo-text">E-<span>quiz</span></span>
+      </a>
+
+      <!-- Right Controls -->
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle light/dark mode" title="Toggle theme">
+          <div class="theme-toggle__track" aria-hidden="true"><i class="fa-solid fa-moon" id="themeIcon"></i></div>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       PAGE WRAPPER
+  ============================================================ -->
+  <div class="page-wrapper">
+    <div class="container">
+
+      <!-- --------------------------------------------------------
+           HERO
+      -------------------------------------------------------- -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__badge">
+          <span class="badge badge-accent">✦ New Categories Added</span>
+        </div>
+
+        <h1 class="hero__title" id="hero-title">
+          Test Your Knowledge,<br />
+          <span class="highlight">Earn Your Rank</span>
+        </h1>
+
+        <p class="hero__subtitle">
+          Choose a category, set your difficulty, and put your knowledge to the ultimate test. Sharpen your mind, one
+          quiz at a time.
+        </p>
+      </section>
+
+      <!-- --------------------------------------------------------
+           CATEGORIES
+      -------------------------------------------------------- -->
+      <section class="categories" aria-labelledby="categories-heading">
+
+        <div class="section-header">
+          <h2 class="section-header__title" id="categories-heading">
+            📚 Categories
+          </h2>
+          <div class="section-header__line" aria-hidden="true"></div>
+          <span class="badge badge-cyan" id="availableCat">Available</span>
+        </div>
+
+        <div class="categories-grid" id="categories-grid" role="list">
+
+        </div><!-- /categories-grid -->
+      </section>
+
+    </div><!-- /container -->
+  </div><!-- /page-wrapper -->
+
+  <!-- ============================================================
+       MODAL — Quiz Setup
+       (position: fixed overlay, appears on card click)
+  ============================================================ -->
+  <div class="modal-overlay" id="quiz-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title"
+    aria-describedby="modal-desc">
+    <div class="modal" id="quiz-modal">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-category-badge">
+          <div class="modal-category-icon modal-category-icon--computers" id="modal-icon" aria-hidden="true">💻</div>
+          <div>
+            <p class="modal__subtitle" id="modal-desc">Configure your quiz preferences</p>
+            <h2 class="modal__title" id="modal-title">Computers</h2>
+          </div>
+        </div>
+
+        <!-- Close button -->
+        <button class="modal-close" id="modal-close-btn" aria-label="Close quiz setup" type="button">✕</button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+
+        <!-- User Name -->
+        <div class="form-group">
+          <label class="form-label" for="user-name-input">Your Name</label>
+          <input class="form-control" type="text" id="user-name-input" name="username" placeholder="e.g. Alex Johnson"
+            autocomplete="given-name" maxlength="40" required />
+        </div>
+
+        <div class="modal-divider" aria-hidden="true"></div>
+
+        <!-- Difficulty -->
+        <div class="form-group diff">
+          <label class="form-label" id="difficulty-label">Difficulty Level</label>
+          <div class="difficulty-options" role="radiogroup" aria-labelledby="difficulty-label">
+
+            <div class="difficulty-opt">
+              <input type="radio" name="difficulty" id="diff-easy" value="easy" checked />
+              <label class="difficulty-opt__label" for="diff-easy">
+                <span class="emoji">🌱</span>
+                Easy
+              </label>
+            </div>
+
+            <div class="difficulty-opt">
+              <input type="radio" name="difficulty" id="diff-medium" value="medium" />
+              <label class="difficulty-opt__label" for="diff-medium">
+                <span class="emoji">🔥</span>
+                Medium
+              </label>
+            </div>
+
+            <div class="difficulty-opt">
+              <input type="radio" name="difficulty" id="diff-hard" value="hard" />
+              <label class="difficulty-opt__label" for="diff-hard">
+                <span class="emoji">💀</span>
+                Hard
+              </label>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Number of Questions (Select) -->
+        <div class="form-group ques">
+          <label class="form-label" for="num-questions">Number of Questions</label>
+          <div class="select-wrapper">
+            <select class="form-control" id="num-questions" name="numQuestions">
+              <option value="5">5 Questions</option>
+              <option value="10" selected>10 Questions</option>
+              <option value="15">15 Questions</option>
+              <option value="20">20 Questions</option>
+            </select>
+          </div>
+        </div>
+
+      </div><!-- /modal-body -->
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-lg btn-full" id="start-quiz-btn" role="button">
+          ⚡ Start Quiz
+        </button>
+        <p class="modal-hint">You can quit anytime during the quiz.</p>
+      </div>
+
+    </div><!-- /modal -->
+  </div><!-- /modal-overlay -->
+  <script src="../js/home/home.js" type="module"></script>
+</body>
+
+</html>

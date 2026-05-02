@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="E-quiz — See your final score and performance summary for the Computers category quiz." />
+  <title>E-quiz | Your Result</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/result.css" />
+</head>
+<body class="result-page">
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav class="navbar" id="result-nav" role="navigation" aria-label="Result navigation">
+    <div class="navbar__inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="navbar__logo" aria-label="E-quiz home">
+        <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+        <span class="navbar__logo-text">E-<span>quiz</span></span>
+      </a>
+
+      <!-- Right Controls -->
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <button
+          class="theme-toggle"
+          id="theme-toggle-btn"
+          aria-label="Toggle light/dark mode"
+          title="Toggle theme"
+        >
+          <div class="theme-toggle__track" aria-hidden="true">🌙</div>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       RESULT MAIN
+  ============================================================ -->
+  <main class="result-main" id="result-main">
+    <div class="result-container">
+
+      <!-- --------------------------------------------------------
+           CELEBRATION HEADER
+      -------------------------------------------------------- -->
+      <div class="result-celebration" aria-label="Quiz complete" role="banner">
+        <!-- Decorative animated ring -->
+        <div class="confetti-ring" aria-hidden="true"></div>
+
+        <span class="result-emoji" aria-hidden="true">🏆</span>
+        <h1 class="result-celebration__title" id="result-title">
+          Outstanding!
+        </h1>
+        <p class="result-celebration__subtitle" id="result-subtitle">
+          
+        </p>
+      </div>
+
+      <!-- --------------------------------------------------------
+           SCORE CARD
+      -------------------------------------------------------- -->
+      <div class="score-card" id="score-card" role="main" aria-label="Your quiz results">
+
+        <!-- Score Ring Display -->
+        <div class="score-display" id="score-display">
+
+          <div class="score-ring" id="score-ring" aria-label="Score: 8 out of 10">
+
+            <!-- SVG ring -->
+            <svg class="score-ring__svg" viewBox="0 0 160 160" aria-hidden="true">
+              <defs>
+                <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%"   stop-color="#7c3aed" />
+                  <stop offset="100%" stop-color="#06b6d4" />
+                </linearGradient>
+              </defs>
+              <!-- Track -->
+              <circle
+                class="score-ring__track"
+                cx="80" cy="80" r="65"
+              />
+              <!-- Fill — stroke-dashoffset controls fill level -->
+              <circle
+                class="score-ring__fill"
+                cx="80" cy="80" r="65"
+                id="score-ring-fill"
+              />
+            </svg>
+
+            <!-- Center content -->
+            <div class="score-ring__content">
+              <div class="score-ring__number" id="score-display-number">
+                
+              </div>
+              <div class="score-ring__label">Score</div>
+            </div>
+          </div><!-- /score-ring -->
+
+          <div class="score-percentage" id="score-percentage" aria-label="80 percent correct">
+            
+          </div>
+
+        </div><!-- /score-display -->
+
+        <!-- Stats Row -->
+        <div class="stats-grid" id="stats-grid" role="list" aria-label="Quiz statistics">
+
+          <div class="stat-item" role="listitem">
+            <div class="stat-item__value stat-item__value--correct" id="stat-correct"></div>
+            <div class="stat-item__label">Correct</div>
+          </div>
+
+          <div class="stat-item" role="listitem">
+            <div class="stat-item__value stat-item__value--incorrect" id="stat-incorrect"></div>
+            <div class="stat-item__label">Wrong</div>
+          </div>
+
+          <div class="stat-item" role="listitem">
+            <div class="stat-item__value stat-item__value--time" id="stat-time"></div>
+            <div class="stat-item__label">Time</div>
+          </div>
+
+        </div><!-- /stats-grid -->
+
+        <!-- Performance Bar -->
+        <div class="performance-bar" id="performance-bar">
+          <div class="performance-bar__label">
+            <span class="performance-bar__title">Accuracy</span>
+            <span class="performance-bar__pct" id="perf-pct"></span>
+          </div>
+          <div class="perf-track" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="Accuracy: 80 percent">
+            <div class="perf-fill" id="perf-fill"></div>
+          </div>
+        </div>
+
+      </div><!-- /score-card -->
+
+  
+      <!-- --------------------------------------------------------
+           ACTION BUTTONS
+      -------------------------------------------------------- -->
+      <div class="result-actions" id="result-actions" role="group" aria-label="Post-quiz actions">
+
+        <!-- Primary: Play Again -->
+        <a
+          href="index.html"
+          class="btn btn-primary btn-lg"
+          id="play-again-btn"
+          role="button"
+          aria-label="Play again — return to category selection"
+        >
+          🔄 Play Again
+        </a>
+
+        <!-- Secondary: Review Answers (placeholder) -->
+
+      </div>
+
+      <!-- Footer credit -->
+      <p class="result-footer" aria-label="App branding">
+        Powered by <strong>E-quiz</strong> · Challenge yourself daily ⚡
+      </p>
+
+    </div><!-- /result-container -->
+  </main>
+<script src="../js/result/result.js" type="module"></script>
+</body>
+</html>

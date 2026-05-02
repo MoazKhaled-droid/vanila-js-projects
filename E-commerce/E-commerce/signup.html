@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Vault</title>
+    <!-- Modern minimalist font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<!-- Note: Add class="light-mode" to body to toggle light theme -->
+<body>
+    <header class="navbar container" style="border-bottom: none;">
+        <a href="index.html" class="logo">Vaul<span>t</span></a>
+        <div class="nav-actions">
+            <button class="icon-btn" id="themeToggle" aria-label="Toggle Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="notification-container" id="notificationBtn">
+                <button class="icon-btn" aria-label="Notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notification-badge" id="notificationBadge" style="display: none;">1</span>
+                </button>
+                <div class="notification-dropdown" id="notificationDropdown">
+                    <div class="notification-content" id="notificationContent">
+                        No new notifications.
+                    </div>
+                </div>
+            </div>
+            <a href="cart.html" class="icon-btn" aria-label="Cart" id="cartBtn">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+            <a href="login.html" class="icon-btn" aria-label="User Profile" id="profileBtn">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        </div>
+    </header>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h2>Create Account</h2>
+            <form action="index.html" id="signupForm">
+                <div class="input-group">
+                    <input type="text" class="input-field" id="nameInput" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" class="input-field" id="emailInput" placeholder="Email Address" required>
+                </div>
+                <div class="input-group password-wrapper">
+                    <input type="password" class="input-field" id="passwordInput" placeholder="Password" required>
+                    <!-- Static eye icon for show/hide functionality -->
+                    <i class="fa-regular fa-eye eye-icon" id="togglePassword1"></i>
+                </div>
+                <div class="input-group password-wrapper">
+                    <input type="password" class="input-field" id="confirmPasswordInput" placeholder="Confirm Password" required>
+                    <i class="fa-regular fa-eye eye-icon" id="togglePassword2"></i>
+                </div>
+                <button type="submit" class="btn login-submit" id="signupBtn">Sign Up</button>
+            </form>
+            <div class="auth-link">
+                <a href="login.html">Already have an account? Log in</a>
+            </div>
+        </div>
+    </div>
+    <script src="js/pages/signup.js" type="module"></script>
+</body>
+</html>

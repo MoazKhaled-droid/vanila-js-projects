@@ -1,0 +1,105 @@
+/* 1. تظبط الطول وتخلي الحاوية Flex عشان الكلام يترص صح */
+.select2-container--default .select2-selection--single {
+    height: 40px !important;
+    /* قصرنا الطول شوية عشان ميبقاش ضخم */
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 8px !important;
+
+    /* التكة اللي بتخلي الكلام في النص */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 2. تظبط مكان النص المكتوب (الـ Rendered text) */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: rgb(251, 251, 251) !important;
+    line-height: normal !important;
+    /* لغينا الـ line-height القديم اللي بيرحل الكلام */
+    padding-left: 10px !important;
+    padding-right: 20px !important;
+    width: 100%;
+    text-align: center;
+    /* لو عاوزه في النص بالظبط */
+}
+
+/* 3. تظبط مكان السهم عشان ميبقاش عالي */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 100% !important;
+    /* يملأ الارتفاع الجديد */
+    top: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* تلوين الـ Placeholder في السيلكت وهو مقفول */
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: rgba(255, 255, 255, 0.9) !important;
+    /* أبيض صريح أو شفاف بسيط */
+}
+
+/* تلوين النص اللي بيتكتب جوه خانة البحث (Search Field) */
+.select2-search--dropdown .select2-search__field {
+    color: rgb(0, 0, 0) !important;
+}
+
+/* تلوين الـ Placeholder اللي جوه خانة البحث نفسه */
+.select2-search--dropdown .select2-search__field::placeholder {
+    color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* style.css */
+.select2-search--dropdown .select2-search__field {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 5px !important;
+    color: rgb(0, 0, 0) !important;
+    outline: none !important;
+    /* عشان يشيل الفوكس البرتقالي أو الأزرق بتاع المتصفح */
+}
+/* تلوين النص اللي بيكتبه اليوزر جوه السرش */
+/* 1. التعديل على شكل الـ Select2 نفسه (الحالة العادية) */
+.select2-container--default .select2-selection--single {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 10px !important;
+    height: 40px !important;
+    transition: all 0.3s ease;
+}
+
+/* 2. الـ Focus Effect لما تضغط على السيرش */
+.select2-container--default.select2-container--open .select2-selection--single {
+    border-color: #fff !important; /* لون الحواف لما يفتح */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important; /* توهج خفيف */
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* 3. تعديل النص اللي جوه السيرش عشان يبقى واضح */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: white !important;
+    line-height: 40px !important;
+}
+
+/* 4. تعديل شكل الـ Dropdown اللي بتفتح (القائمة) */
+.select2-dropdown {
+    background-color: rgba(30, 30, 30, 0.9) !important; /* لون غامق شفاف */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 10px !important;
+    color: white !important;
+}
+
+/* 5. الـ Focus على خانة الكتابة (Input) اللي جوه الـ Dropdown */
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: white !important;
+    border-radius: 5px !important;
+    outline: none !important;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field:focus {
+    border-color: #fff !important;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5) !important;
+}

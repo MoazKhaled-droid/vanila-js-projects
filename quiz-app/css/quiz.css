@@ -1,0 +1,469 @@
+/* ================================================================
+   E-QUIZ | quiz.css
+   Quiz Page — Progress Bar, Question, Answer Grid
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   1. Quiz Page Layout
+   ---------------------------------------------------------------- */
+.quiz-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem);
+}
+
+.quiz-container {
+  width: 100%;
+  max-width: 720px;
+}
+
+/* ----------------------------------------------------------------
+   2. Quiz Card (Main Glass Container)
+   ---------------------------------------------------------------- */
+.quiz-card {
+  margin-top: 70px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  padding: 0;
+}
+
+/* ----------------------------------------------------------------
+   3. Quiz Header (inside card)
+   ---------------------------------------------------------------- */
+.quiz-header {
+  padding: 1.75rem 2rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-glass);
+}
+
+.quiz-header__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+
+.quiz-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.quiz-category-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-primary-lt);
+  letter-spacing: 0.02em;
+}
+
+.quiz-timer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.35rem 1rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-glass-strong);
+  border: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.quiz-timer__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-secondary);
+  animation: timer-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes timer-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ----------------------------------------------------------------
+   4. Progress Bar
+   ---------------------------------------------------------------- */
+.progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.progress-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.progress-fraction {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-fraction span {
+  color: var(--accent-primary-lt);
+}
+
+.progress-bar-track {
+  height: 6px;
+  background: var(--progress-track);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--progress-fill);
+  border-radius: var(--radius-full);
+  width: 40%; /* e.g. 4/10 done */
+  position: relative;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-full);
+  filter: blur(4px);
+}
+
+/* Step dots */
+.progress-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--progress-track);
+  transition: background var(--transition-base), transform var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.progress-dot.done    { background: var(--accent-primary); }
+.progress-dot.current { background: var(--accent-secondary); transform: scale(1.35); }
+.progress-dot.correct { background: var(--correct); }
+.progress-dot.wrong   { background: var(--incorrect); }
+
+/* ----------------------------------------------------------------
+   5. Quiz Body
+   ---------------------------------------------------------------- */
+.quiz-body {
+  padding: 2rem;
+}
+
+/* Question Number */
+.question-number {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.question-number__badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+/* Question Text */
+.question-text {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  letter-spacing: -0.015em;
+}
+
+/* ----------------------------------------------------------------
+   6. Answer Grid
+   ---------------------------------------------------------------- */
+.answers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
+/* Answer Button */
+.answer-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-glass);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  overflow: hidden;
+}
+
+.answer-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  transition: background var(--transition-fast);
+  border-radius: inherit;
+}
+
+.answer-btn:hover {
+  border-color: var(--accent-primary);
+  background: rgba(124, 58, 237, 0.08);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm), 0 0 0 1px rgba(124, 58, 237, 0.15);
+}
+
+.answer-btn:active {
+  transform: translateY(0);
+}
+
+/* Option Letter Badge */
+.answer-btn__letter {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-glass-strong);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: all var(--transition-base);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.answer-btn__text {
+  flex: 1;
+  line-height: 1.4;
+}
+
+/* Checkmark / X icon (hidden by default) */
+.answer-btn__icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  opacity: 0;
+  flex-shrink: 0;
+  transition: opacity var(--transition-base);
+}
+
+/* ----------------------------------------------------------------
+   7. Answer States — CORRECT
+   ---------------------------------------------------------------- */
+.answer-btn.correct {
+  background: var(--correct-bg);
+  border-color: var(--correct-border);
+  color: var(--correct);
+  box-shadow: 0 0 0 3px var(--correct-glow), var(--shadow-sm);
+  transform: none;
+}
+
+.answer-btn.correct .answer-btn__letter {
+  background: var(--correct);
+  border-color: var(--correct);
+  color: white;
+}
+
+.answer-btn.correct .answer-btn__icon {
+  opacity: 1;
+  background: var(--correct);
+  color: white;
+}
+
+.answer-btn.correct .answer-btn__text {
+  font-weight: 600;
+}
+
+/* ----------------------------------------------------------------
+   8. Answer States — INCORRECT
+   ---------------------------------------------------------------- */
+.answer-btn.incorrect {
+  background: var(--incorrect-bg);
+  border-color: var(--incorrect-border);
+  color: var(--incorrect);
+  box-shadow: 0 0 0 3px var(--incorrect-glow), var(--shadow-sm);
+  transform: none;
+}
+
+.answer-btn.incorrect .answer-btn__letter {
+  background: var(--incorrect);
+  border-color: var(--incorrect);
+  color: white;
+}
+
+.answer-btn.incorrect .answer-btn__icon {
+  opacity: 1;
+  background: var(--incorrect);
+  color: white;
+}
+
+.answer-btn.incorrect .answer-btn__text {
+  font-weight: 600;
+}
+
+/* Shake animation on incorrect */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-5px); }
+  40%       { transform: translateX(5px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+.answer-btn.incorrect {
+  animation: shake 0.4s ease forwards;
+}
+
+/* ----------------------------------------------------------------
+   9. Quiz Footer (Next Button)
+   ---------------------------------------------------------------- */
+.quiz-footer {
+  padding: 0 2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+
+
+
+
+/* ----------------------------------------------------------------
+   10. Explanation Panel (shows after answer)
+   ---------------------------------------------------------------- */
+.explanation-panel {
+  margin: 0 2rem 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: rgba(6, 182, 212, 0.07);
+  border: 1px solid rgba(6, 182, 212, 0.20);
+  display: flex;
+  gap: 0.75rem;
+}
+
+.explanation-panel__icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  line-height: 1.6;
+}
+
+.explanation-panel__text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.explanation-panel__text strong {
+  color: var(--accent-secondary);
+}
+
+/* ----------------------------------------------------------------
+   11. Responsive — Quiz
+   ---------------------------------------------------------------- */
+@media (max-width: 599px) {
+  .answers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-header {
+    padding: 1.25rem 1.25rem 1rem;
+  }
+
+  .quiz-body {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .quiz-footer {
+    padding: 0 1.25rem 1.5rem;
+  }
+
+  .explanation-panel {
+    margin: 0 1.25rem 1.25rem;
+  }
+
+  .quiz-timer {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.75rem;
+  }
+}
+
+@media (max-width: 399px) {
+  .progress-dots {
+    display: none;
+  }
+}
+
+@media (min-width: 600px) {
+  .answers-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

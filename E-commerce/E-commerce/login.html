@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - The Vault</title>
+    <!-- Modern minimalist font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<!-- Note: Add class="light-mode" to body to toggle light theme -->
+
+<body>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h2>Welcome To Vault Shop</h2>
+            <form action="index.html" id="loginForm">
+                <div class="input-group">
+                    <input type="text" class="input-field" id="usernameInput" placeholder="Username">
+                    <span class="Error-msg" id="username-Error-msg"></span>
+                </div>
+                <div class="input-group password-wrapper">
+                    <input type="password" class="input-field" id="passwordInput" placeholder="Password">
+                    <span class="Error-msg" id="password-Error-msg"></span>
+                    <!-- Static eye icon for show/hide functionality -->
+                    <!-- <i class="fa-regular fa-eye eye-icon" id="togglePassword"></i> -->
+                    <i class="fa-regular fa-eye-slash eye-icon" id="togglePassword"></i>
+                </div>
+                <span class="Error-msg" id="Error-msg"></span>
+                <button type="submit" class="btn login-submit" id="loginBtn">Log In</button>
+            </form>
+            <div class="auth-link">
+                <a href="signup.html">Create an account?</a>
+            </div>
+        </div>
+    </div>
+    <script src="js/pages/login.js" type="module"></script>
+</body>
+
+</html>

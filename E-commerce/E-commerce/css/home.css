@@ -1,0 +1,303 @@
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+  margin: 0;
+}
+
+main.container{
+  display: flex;
+}
+
+/* --- Sidebar Styling --- */
+.aside{
+  margin-top: 20px;
+}
+.sidebar {
+    width: 260px;
+    min-width: 260px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    position: sticky;
+    top: 10px; /* بيفضل ثابت وأنت بتعمل سكرول */
+    transition: all var(--transition-speed);
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-header h3 {
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+.sidebar-header i {
+    transition: transform var(--transition-speed);
+    color: var(--text-muted);
+}
+
+/* Dropdown Logic: لما نفتح ونقفل */
+.sidebar.collapsed .sidebar-nav {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-header i {
+    transform: rotate(-90deg);
+}
+
+/* Category Buttons Inside Sidebar */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+/* Custom Scrollbar for Sidebar */
+.sidebar-nav::-webkit-scrollbar { width: 4px; }
+.sidebar-nav::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+#catSearch{
+  width: 100%;
+  margin-top: 10px;
+}
+#searchInput::placeholder{
+  font-size: small;
+}
+.filter-btn {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    color: var(--text-color);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.filter-btn:hover {
+    background-color: var(--surface-hover);
+    padding-left: 20px; /* حركة بسيطة عند الهوفر */
+}
+
+.filter-btn.active {
+    background-color: var(--accent-color);
+    color: #121212;
+    font-weight: 600;
+}
+
+.light-mode .filter-btn.active {
+    color: #ffffff;
+}
+
+/* --- Content Area --- */
+.content-area {
+    flex-grow: 1;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 200px;
+        min-width: 200px;
+    }
+    
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    main.container {
+        flex-direction: column;
+    }
+    .aside {
+        width: 100%;
+        position: sticky;
+        top: 10px;
+        z-index: 100;
+    }
+    .sidebar {
+        width: 100%;
+        min-width: 100%;
+        position: relative;
+        top: auto;
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+    .sidebar-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--surface-color);
+        border: 1px solid var(--border-color);
+        border-top: none;
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+        padding: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 101;
+        max-height: 300px;
+        margin-top: 0;
+    }
+}
+/* --- Product Grid --- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+/* --- Product Card (التعديل النهائي) --- */
+.product-card {
+  background-color: var(--surface-color);
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.light-mode .product-card:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* علامة الخصم الصايعة */
+.discount-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background-color: var(--danger-color, #ff5252);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.product-image-container {
+  width: 100%;
+  height: 220px;
+  background-color: var(--surface-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.product-image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform var(--transition-speed);
+}
+
+.product-card:hover img {
+  transform: scale(1.08);
+}
+
+.product-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.category-tag {
+  font-size: 0.75rem;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.product-title {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: var(--text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-price {
+  font-weight: 700;
+  color: var(--price-color);
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.details-btn,
+.add-more {
+  margin-top: auto;
+  width: 100%;
+  background-color: var(--surface-hover);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all var(--transition-speed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+.add-more{
+  width: 100px;
+  margin: 30px auto;
+}
+.product-card:hover .details-btn {
+  background-color: var(--accent-color);
+  color: #121212;
+  border-color: var(--accent-color);
+}
+
+.light-mode .product-card:hover .details-btn {
+  color: #ffffff;
+}
+
+.add-more:hover {
+  transform: translateY(-5px);
+  background-color: var(--accent-color);
+  color: #121212;
+  border-color: var(--accent-color);
+}
+
+.light-mode .add-more:hover {
+  color: #ffffff;
+}
+

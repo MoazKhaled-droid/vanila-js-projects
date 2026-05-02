@@ -1,0 +1,414 @@
+/* ================================================================
+   E-QUIZ | home.css
+   Home Page — Navbar, Hero, Category Grid, Modal
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   1. Page Layout
+   ---------------------------------------------------------------- */
+.home-page {
+  min-height: 100vh;
+}
+
+/* ----------------------------------------------------------------
+   2. Hero Section
+   ---------------------------------------------------------------- */
+.hero {
+  padding: clamp(3rem, 8vw, 6rem) 0 clamp(2rem, 5vw, 4rem);
+  text-align: center;
+  position: relative;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+}
+
+.hero__title {
+  max-width: 640px;
+  margin: 0 auto 1.25rem;
+}
+
+.hero__title .highlight {
+  background: linear-gradient(135deg, var(--accent-primary-lt), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__subtitle {
+  max-width: 520px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+/* ----------------------------------------------------------------
+   3. Section Header
+   ---------------------------------------------------------------- */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.section-header__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.section-header__line {
+  flex: 1;
+  height: 1px;
+  background: var(--border-color);
+  max-width: 200px;
+}
+
+/* ----------------------------------------------------------------
+   4. Category Grid
+   ---------------------------------------------------------------- */
+.categories {
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 1.5rem;
+}
+
+/* ----------------------------------------------------------------
+   5. Category Card
+   ---------------------------------------------------------------- */
+.category-card {
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-card:focus-visible {
+  outline: 2px solid var(--accent-primary-lt);
+  outline-offset: 4px;
+}
+
+/* Card Image / Thumbnail */
+.category-card__image {
+  width: 100%;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.category-card__image-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  transition: transform 0.45s ease;
+}
+
+.category-card:hover .category-card__image-inner {
+  transform: scale(1.08);
+}
+
+/* Computers card theme */
+.category-card .category-card__image-inner {
+  background: linear-gradient(135deg,
+      #0d0f1a 0%,
+      #1a0533 30%,
+      #0f1a2e 60%,
+      #061224 100%);
+}
+
+.category-card .category-card__image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(124, 58, 237, 0.30) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 70%, rgba(6, 182, 212, 0.20) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* لما يكون الثيم فاتح، الكود ده هيعمل Overwrite للقيم الثابتة */
+[data-theme="light"] .category-card .category-card__image-inner {
+  background: linear-gradient(135deg,
+      #f0f9ff 0%,   /* Sky 50 */
+      #e0e7ff 30%,  /* Indigo 100 */
+      #f5f3ff 60%,  /* Violet 50 */
+      #fafafa 100%); /* White-ish */
+}
+
+[data-theme="light"] .category-card .category-card__image::before {
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(124, 58, 237, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 70%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+}
+
+/* Grid overlay decoration */
+.category-card__grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+/* Floating decorative elements in Computer card */
+.card-deco {
+  position: absolute;
+  border-radius: var(--radius-sm);
+  opacity: 0.6;
+}
+
+.card-deco-1 {
+  width: 56px;
+  height: 8px;
+  background: rgba(124, 58, 237, 0.7);
+  top: 28px;
+  left: 24px;
+  border-radius: 4px;
+}
+
+.card-deco-2 {
+  width: 36px;
+  height: 8px;
+  background: rgba(6, 182, 212, 0.6);
+  top: 44px;
+  left: 24px;
+  border-radius: 4px;
+}
+
+.card-deco-3 {
+  width: 80px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  bottom: 28px;
+  right: 24px;
+  border-radius: 6px;
+}
+
+/* Floating orbs for General Knowledge card */
+
+
+/* Card Body */
+.category-card__body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.category-card__category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.category-card__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.category-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.category-card__action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent-primary-lt);
+  transition: gap var(--transition-fast);
+}
+
+.category-card:hover .category-card__action {
+  gap: 10px;
+}
+
+
+/* ----------------------------------------------------------------
+   6. Modal — Quiz Setup
+   ---------------------------------------------------------------- */
+.modal-overlay {
+  display: none;
+}
+
+.modal-category-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.25rem;
+}
+
+.modal-category-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.modal-category-icon--computers {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(6, 182, 212, 0.15));
+  border: 1px solid rgba(124, 58, 237, 0.3);
+}
+
+.modal-category-icon--general {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.modal__title {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.modal__subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.modal-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 0.25rem 0;
+}
+
+/* Difficulty Select — custom styled */
+.difficulty-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+
+.difficulty-opt {
+  position: relative;
+}
+
+.difficulty-opt input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.difficulty-opt__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0.65rem 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-glass);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--transition-base);
+  text-align: center;
+}
+
+.difficulty-opt__label .emoji {
+  font-size: 1.1rem;
+}
+
+.difficulty-opt input:checked+.difficulty-opt__label {
+  border-color: var(--accent-primary);
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--accent-primary-lt);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.difficulty-opt input:focus-visible+.difficulty-opt__label {
+  outline: 2px solid var(--accent-primary-lt);
+  outline-offset: 2px;
+}
+
+.difficulty-opt__label:hover {
+  border-color: rgba(124, 58, 237, 0.4);
+  color: var(--text-primary);
+}
+
+/* Start button info text */
+.modal-hint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* ----------------------------------------------------------------
+   7. Responsive — Home
+   ---------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header__line {
+    display: none;
+  }
+
+  .difficulty-options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .modal-body {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .modal-header {
+    padding: 1.25rem 1.25rem 1rem;
+  }
+
+  .modal-footer {
+    padding: 0.75rem 1.25rem 1.5rem;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

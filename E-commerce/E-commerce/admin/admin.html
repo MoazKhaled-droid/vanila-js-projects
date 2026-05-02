@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault Admin Dashboard</title>
+    <!-- Modern Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <!-- Lucide Icons for a clean, premium look -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar glass-panel">
+            <div class="brand">
+                <i data-lucide="box" class="brand-icon"></i>
+                <h2>Vault.</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-item" data-target="dashboard-view">
+                    <i data-lucide="layout-dashboard"></i> 
+                    <span>Dashboard Home</span>
+                </button>
+                <button class="nav-item active" data-target="inventory-view">
+                    <i data-lucide="package"></i> 
+                    <span>Inventory</span>
+                </button>
+                <button class="nav-item" data-target="reports-view">
+                    <i data-lucide="bar-chart-2"></i> 
+                    <span>Reports</span>
+                </button>
+                <button class="nav-item" data-target="settings-view">
+                    <i data-lucide="settings"></i> 
+                    <span>Settings</span>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="topbar glass-panel">
+                <div class="search-bar">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Search products, orders, or users...">
+                </div>
+                <div class="topbar-actions">
+                    <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+                        <i data-lucide="moon" class="moon-icon"></i>
+                        <i data-lucide="sun" class="sun-icon"></i>
+                    </button>
+                    <div class="admin-profile">
+                        <img src="https://i.pravatar.cc/150?img=11" alt="Admin Avatar" class="avatar">
+                        <div class="profile-info">
+                            <span class="name">Admin User</span>
+                            <span class="role">Store Manager</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <!-- Dashboard Home View -->
+                <section id="dashboard-view" class="view-section">
+                    <div class="section-header">
+                        <h2>Welcome to Vault Admin</h2>
+                        <p style="color: var(--text-muted); margin-top: 0.5rem;">Select a section from the sidebar to manage your store.</p>
+                    </div>
+                </section>
+
+                <!-- Inventory View (Default Active) -->
+                <section id="inventory-view" class="view-section active">
+                    <div class="section-header">
+                        <h2>Inventory Management</h2>
+                    </div>
+                    
+                    <div class="table-container glass-panel">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Title</th>
+                                    <th>Price</th>
+                                    <th>Discount</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inventory-table-body">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Add New Product Floating Button -->
+                    <button id="add-product-btn" class="fab-btn" title="Add New Product">
+                        <i data-lucide="plus"></i>
+                    </button>
+                </section>
+
+                <!-- Reports View -->
+                <section id="reports-view" class="view-section">
+                    <div class="section-header">
+                        <h2>Reports & Analytics</h2>
+                    </div>
+                    
+                    <div class="widgets-grid">
+                        <div class="widget glass-panel">
+                            <div class="widget-icon"><i data-lucide="dollar-sign"></i></div>
+                            <div class="widget-data">
+                                <h3>Total Sales</h3>
+                                <p class="value">$124,563.00</p>
+                                <span class="trend positive"><i data-lucide="trending-up"></i> +12.5% vs last month</span>
+                            </div>
+                        </div>
+                        <div class="widget glass-panel">
+                            <div class="widget-icon"><i data-lucide="users"></i></div>
+                            <div class="widget-data">
+                                <h3>Active Users</h3>
+                                <p class="value">8,234</p>
+                                <span class="trend positive"><i data-lucide="trending-up"></i> +5.2% vs last month</span>
+                            </div>
+                        </div>
+                        <div class="widget glass-panel">
+                            <div class="widget-icon"><i data-lucide="credit-card"></i></div>
+                            <div class="widget-data">
+                                <h3>Revenue</h3>
+                                <p class="value">$45,231.89</p>
+                                <span class="trend negative"><i data-lucide="trending-down"></i> -1.4% vs last month</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder Chart -->
+                    <div class="chart-container glass-panel mt-4">
+                        <h3>Revenue Overview</h3>
+                        <div class="chart-placeholder">
+                            <div class="bar" style="height: 45%" title="Jan"></div>
+                            <div class="bar" style="height: 60%" title="Feb"></div>
+                            <div class="bar" style="height: 40%" title="Mar"></div>
+                            <div class="bar" style="height: 80%" title="Apr"></div>
+                            <div class="bar" style="height: 50%" title="May"></div>
+                            <div class="bar" style="height: 90%" title="Jun"></div>
+                            <div class="bar" style="height: 70%" title="Jul"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings View -->
+                <section id="settings-view" class="view-section">
+                    <div class="section-header">
+                        <h2>Settings</h2>
+                        <p style="color: var(--text-muted); margin-top: 0.5rem;">System configuration placeholder.</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div id="product-modal" class="modal-overlay">
+        <div class="modal glass-panel">
+            <header class="modal-header">
+                <h3 id="modal-title">Add New Product</h3>
+                <button class="close-modal-btn"><i data-lucide="x"></i></button>
+            </header>
+            <form id="product-form">
+                <input type="hidden" id="product-id">
+                
+                <div class="form-group">
+                    <label>Product Image</label>
+                    <div class="image-upload-area">
+                        <i data-lucide="upload-cloud"></i>
+                        <span>Click to upload or drag & drop</span>
+                        <input type="text" id="product-image" placeholder="Or enter image URL here..." class="mt-2">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product-title">Title</label>
+                        <input type="text" id="product-title" required placeholder="e.g. Minimalist Chair">
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Price ($)</label>
+                        <input type="number" id="product-price" step="0.01" required placeholder="0.00">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-description">Description</label>
+                    <textarea id="product-description" rows="3" placeholder="Enter product details..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-discount">Discount Percentage (%)</label>
+                    <input type="number" id="product-discount" min="0" max="100" value="0">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary close-modal-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

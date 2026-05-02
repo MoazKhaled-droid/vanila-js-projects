@@ -1,0 +1,81 @@
+/* Login/Signup Page */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.login-card {
+  background-color: var(--surface-color);
+  padding: 50px 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+}
+
+.light-mode .login-card {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.login-card h2 {
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: color var(--transition-speed);
+}
+
+.eye-icon:hover {
+  color: var(--text-color);
+}
+
+.login-submit {
+  width: 100%;
+  margin-top: 15px;
+  padding: 14px;
+  font-size: 1.1rem;
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.auth-link a {
+  color: var(--accent-color);
+  font-weight: 500;
+  transition: color var(--transition-speed);
+}
+
+.auth-link a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.Error-msg {
+  display: none;
+  color: var(--danger-color);
+  font-size: 0.8rem;
+  margin-top: 5px;
+  padding-left: 5px;
+}
+

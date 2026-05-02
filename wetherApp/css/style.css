@@ -1,0 +1,257 @@
+/* style.css */
+/* style.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    ;
+    /* min-height: 100vh; */
+    background-image: url('../assets/imges/01d.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    /* ضروري جداً عشان الـ before يتظبط عليه */
+    overflow-x: hidden;
+    /* عشان ميبقاش فيه سكرول عرضي غلس */
+    transition: 0.5s;
+}
+
+/* طبقة الـ Overlay السوداء الشفافة */
+body::before {
+    content: "";
+    /* لازم يكون موجود عشان الـ element يظهر */
+    position: fixed;
+    /* بيخليها ثابتة حتى وأنت بتعمل سكرول */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(4 4 4 / 20%);
+    ;
+    z-index: -1;
+    /* بيخليها فوق الصورة بس تحت الكلام والـ Cards */
+}
+
+.glass-effect {
+    /* 1. لون خلفية شفاف (أبيض أو أسود حسب المود) */
+    background: rgba(255, 255, 255, 0.1);
+
+    /* 2. أهم سطر: هو اللي بيعمل التغبيشة للخلفية اللي ورا الكارت */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* عشان يشتغل على Safari */
+
+    /* 3. حدود خفيفة جداً عشان تدي إيحاء بحافة الزجاج */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    /* 4. شوية شادو خفيف عشان الكارت يبرز عن الخلفية */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+    border-radius: 15px;
+    padding: 20px;
+    color: rgb(244, 243, 243);
+}
+
+.container {
+    display: flex;
+    position: relative;
+    min-height: 100vh;
+}
+
+
+
+.right {
+    border-radius: 0;
+    position: relative;
+
+}
+
+.right .current-weather {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    border-bottom: 1px solid;
+    border-color: #ffffff45;
+}
+
+
+.right .current-weather .temp {
+    font-size: 70px;
+
+}
+
+.right .next-day-forecast>h3 {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+}
+
+.right .day-forecasts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.right .day-forecasts .forecast {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    font-size: small;
+    color: rgb(194 194 194);
+}
+
+.right .day-forecasts .forecast .info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 10px;
+    text-align: start;
+    width: 100%;
+    color: white;
+
+}
+
+.right .day-forecasts .forecast .deg {
+    display: flex;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 10px;
+    border-left: 1px solid;
+    color: white;
+}
+
+.right .day-forecasts .forecast .icon {
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    border-right: 1px solid;
+    padding-right: 5px;
+    ;
+}
+
+.left {
+    /* height: 100%; */
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+}
+
+.left .main-details {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex: 1;
+}
+
+.weather-case {
+    background: linear-gradient(to bottom, #ffffff 0%, #3b3b3b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 3rem;
+    font-weight: 900;
+    font-size: 70px;
+    border-bottom: 1px solid;
+    border-color: #ffffff45;
+    width: 100%;
+    text-align: end;
+    padding-bottom: 40px;
+    text-transform: capitalize;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.left .date {
+    margin-top: 40px;
+    color: white;
+}
+
+.temp-focus {
+    border: 2px solid;
+}
+
+@media(max-width:560px) {
+    .left .weather-case {
+        font-size: 15px;
+    }
+
+    .left .date {
+        font-size: 14px;
+        text-align: end;
+    }
+}
+
+
+.left .temp-details {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.temp-card {
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media(max-width:430px) {
+    .temp-card {
+        width: 50px;
+    }
+}
+
+/* Spinner Loader */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    /* التغبيشة اللي طلبتها */
+    display: none;
+    /* مخفي في البداية */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: 0.3s;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* حالة الـ Loading لما نحب نشغلها */
+body.is-loading #loader {
+    display: flex;
+}
